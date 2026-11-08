@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة فرص دنقلا | تعليم وتمكين المرأة</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI","Tahoma","Arial",sans-serif;background:#0e1726;color:#e8edf5;line-height:1.75;padding:0 0 60px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header{background:linear-gradient(135deg,#12304d 0%,#0b1f33 60%,#122a1f 100%);padding:38px 0 26px;border-bottom:1px solid #22344d}
+h1{font-size:1.75rem;font-weight:800;letter-spacing:-.3px}
+.sub{color:#93a7c0;font-size:.95rem;margin-top:8px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:22px}
+.stat{background:rgba(255,255,255,.05);border:1px solid #23384f;border-radius:12px;padding:12px 14px}
+.stat b{display:block;font-size:1.4rem;color:#4fd1a5}
+.stat span{font-size:.8rem;color:#93a7c0}
+nav{position:sticky;top:0;z-index:20;background:#0e1726ee;backdrop-filter:blur(8px);border-bottom:1px solid #1d2d42;margin-top:0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 0}
+.tab{white-space:nowrap;padding:9px 16px;border-radius:999px;border:1px solid #29405a;background:#14243a;color:#b9c9dc;cursor:pointer;font-size:.9rem;font-weight:600;transition:.15s}
+.tab:hover{border-color:#3d5f85}
+.tab.active{background:#1c6b52;border-color:#2e9c77;color:#dffaf1}
+.tab .n{font-size:.72rem;opacity:.75;margin-right:4px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0;align-items:center}
+input[type=text], select, textarea{flex:1;min-width:200px;padding:11px 14px;border-radius:10px;border:1px solid #29405a;background:#14243a;color:#e8edf5;font-size:.92rem;font-family:inherit}
+input[type=text]::placeholder, textarea::placeholder{color:#6d829c}
+.chip{padding:7px 13px;border-radius:999px;border:1px solid #29405a;background:#14243a;color:#a9bcd2;cursor:pointer;font-size:.82rem}
+.chip.on{background:#254b6e;border-color:#3f7aa8;color:#e3f2ff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(348px,1fr));gap:16px;margin-top:6px}
+.card{background:#131f31;border:1px solid #22344d;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;position:relative}
+.card:hover{border-color:#33506e}
+.ch{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.nm{font-size:1.02rem;font-weight:800;color:#fff}
+.en{font-size:.78rem;color:#7f94ad;font-weight:500;margin-top:2px}
+.badge{font-size:.68rem;padding:3px 9px;border-radius:6px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.b-intl{background:#1e3a5f;color:#8fc4f7;border:1px solid #2f5c8f}
+.b-nat{background:#1f3d2c;color:#7fe0b0;border:1px solid #2c6247}
+.b-part{background:#3d2f1a;color:#f0c674;border:1px solid #6b5327}
+.b-don{background:#3b1f3d;color:#e9a6ee;border:1px solid #6b3a70}
+.b-event{background:#4a2810;color:#fbd38d;border:1px solid #8c4a1d}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:.7rem;padding:2px 8px;border-radius:5px;background:#1b2c42;color:#93b0cd}
+.row{display:flex;gap:7px;font-size:.86rem}
+.k{color:#7f95ae;font-weight:700;min-width:78px;flex-shrink:0}
+.v{color:#cfdceb;flex:1;word-break:break-word}
+.v a{color:#5fb8f0;text-decoration:none;border-bottom:1px dotted #2f5c8f}
+.v a:hover{color:#8ed4ff}
+.unv{color:#f0a04b;font-size:.8rem;font-style:italic}
+.fits{display:flex;gap:6px;align-items:center;font-weight:700;font-size:.83rem}
+.f3{color:#4fd1a5}.f2{color:#e8c46a}.f1{color:#e88a8a}
+.src{font-size:.74rem;color:#6d829c;border-top:1px dashed #22344d;padding-top:8px;margin-top:2px}
+.src a{color:#5fb8f0;text-decoration:none}
+.note{background:#1a2536;border:1px solid #2a3f58;border-right:3px solid #f0a04b;border-radius:10px;padding:14px 16px;margin:22px 0;font-size:.86rem;color:#c2d1e2}
+.note b{color:#f0c674}
+.btn-action{background:#1c6b52;color:#fff;border:none;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:600;font-size:.88rem;transition:.15s}
+.btn-action:hover{background:#2e9c77}
+.btn-danger{background:#8c2d2d;color:#fff}
+.btn-danger:hover{background:#b33b3b}
+.btn-edit{background:#254b6e;color:#fff}
+.btn-edit:hover{background:#3a6e9c}
+.card-actions{display:flex;gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid #1d2d42;justify-content:flex-end}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);z-index:100;justify-content:center;align-items:center;padding:16px}
+.modal-content{background:#14243a;border:1px solid #2e4a6b;border-radius:14px;max-width:550px;width:100%;max-height:90vh;overflow-y:auto;padding:20px}
+.modal-content h3{margin-bottom:14px;color:#4fd1a5}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:.82rem;color:#93a7c0;margin-bottom:4px}
+footer{margin-top:36px;padding-top:18px;border-top:1px solid #1d2d42;font-size:.78rem;color:#6d829c;text-align:center}
+@media(max-width:600px){.grid{grid-template-columns:1fr}h1{font-size:1.35rem}.stat b{font-size:1.2rem}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<h1>منصة فرص دنقلا — تعليم وتمكين المرأة</h1>
+<div class="sub">قاعدة بيانات تفاعلية كاملة · ولاية الشمالية، السودان</div>
+<div class="stats">
+<div class="stat"><b>358,918</b><span>نازح في الشمالية (IOM DTM)[cite: 1]</span></div>
+<div class="stat"><b>64,441</b><span>نازح في محلية دنقلا[cite: 1]</span></div>
+<div class="stat"><b id="vol-count">125</b><span>متطوع ومتطوعة نشطون</span></div>
+<div class="stat"><b id="total-items">0</b><span>عنصر بالمنصة</span></div>
+</div>
+</div>
+</header>
+
+<nav><div class="wrap"><div class="tabs">
+<button class="tab active" data-cat="all">الكل <span class="n" id="c-all">0</span></button>
+<button class="tab" data-cat="intl">الدولية المتواجدة <span class="n" id="c-intl">0</span></button>
+<button class="tab" data-cat="nat">الوطنية <span class="n" id="c-nat">0</span></button>
+<button class="tab" data-cat="part">الشريك المحتمل <span class="n" id="c-part">0</span></button>
+<button class="tab" data-cat="don">المانحون الدوليون <span class="n" id="c-don">0</span></button>
+<button class="tab" data-cat="events">أحداث ونشاطات دنقلا <span class="n" id="c-events">0</span></button>
+</div></div></nav>
+
+<div class="wrap">
+<div class="tools">
+<input type="text" id="q" placeholder="ابحث بالاسم أو القطاع أو المدينة…">
+<button class="btn-action" id="openAddModal">➕ إضافة جهة / حدث جديد</button>
+<button class="btn-action btn-edit" id="updateVolBtn">🔢 تحديث المتطوعين</button>
+<button class="btn-action btn-danger" id="resetDataBtn" style="font-size:0.75rem;">إعادة البيانات الأصلية</button>
+</div>
+
+<div class="chip on" data-tag="all">كل الأقسام</div>
+<div class="chip" data-tag="تعليم">تعليم</div>
+<div class="chip" data-tag="تمكين المرأة">تمكين المرأة</div>
+<div class="chip" data-tag="حماية">حماية</div>
+<div class="chip" data-tag="صحة">صحة</div>
+<div class="chip" data-tag="تنسيق">تنسيق</div>
+
+<div class="note" id="catnote"></div>
+<div class="grid" id="grid"></div>
+
+<footer>
+منصة فرص دنقلا — جميع البيانات والروابط والمصادر مسترجعة وقابلة للتعديل والإضافة المباشرة[cite: 1].
+</footer>
+</div>
+
+<!-- Modal نافذة الإضافة والتعديل -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3 id="modalTitle">إضافة عنصر جديد</h3>
+    <form id="dataForm">
+      <input type="hidden" id="editIndex">
+      <div class="form-group">
+        <label>القسم / التبويب</label>
+        <select id="fCat">
+          <option value="intl">الدولية المتواجدة</option>
+          <option value="nat">الوطنية</option>
+          <option value="part">الشريك المحتمل</option>
+          <option value="don">المانحون الدوليون</option>
+          <option value="events">أحداث ونشاطات دنقلا</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>الاسم بالعربي</label>
+        <input type="text" id="fNm" required placeholder="اسم الجهة أو الحدث">
+      </div>
+      <div class="form-group">
+        <label>الاسم بالإنجليزي / الوصف الفرعي</label>
+        <input type="text" id="fEn" placeholder="English Name">
+      </div>
+      <div class="form-group">
+        <label>القطاعات / الأوسمة (مفصولة بفواصل)</label>
+        <input type="text" id="fTag" placeholder="تعليم, تمكين المرأة, حماية">
+      </div>
+      <div class="form-group">
+        <label>مجال العمل / التفاصيل</label>
+        <input type="text" id="fSec" placeholder="مجالات العمل والخدمات...">
+      </div>
+      <div class="form-group">
+        <label>التواجد / التفاصيل الميدانية</label>
+        <textarea id="fPres" placeholder="حالة التواجد في دنقلا والشمالية..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>البريد والهاتف</label>
+        <input type="text" id="fEm" placeholder="email@example.org">
+        <input type="text" id="fPh" placeholder="+249..." style="margin-top:6px;">
+      </div>
+      <div class="form-group">
+        <label>العنوان</label>
+        <input type="text" id="fAddr" placeholder="العنوان والمقر">
+      </div>
+      <div class="form-group">
+        <label>درجة الملاءمة (1: منخفضة، 2: متوسطة، 3: عالية)</label>
+        <select id="fFit">
+          <option value="3">●●● عالية (3)</option>
+          <option value="2">●●○ متوسطة (2)</option>
+          <option value="1">●○○ منخفضة (1)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>شرح التوصية كشريك</label>
+        <input type="text" id="fFitTxt" placeholder="لماذا تعتبر شريكاً مناسباً؟">
+      </div>
+      <div style="display:flex; gap:10px; margin-top:16px;">
+        <button type="submit" class="btn-action" style="flex:1;">حفظ في المنصة</button>
+        <button type="button" class="btn-action btn-danger" id="closeModal">إلغاء</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+// البيانات الأصلية الكاملة بكافة التفاصيل والقطاعات والروابط
+const defaultData = [
+  {cat:"intl", tag:["تعليم","حماية"], fit:3, nm:"يونيسف — UNICEF", en:"United Nations Children's Fund", sec:"تعليم في الطوارئ، تعليم بديل، حماية الطفل", pres:"مؤكَّد: مركز تعليم بديل بمنهجية TaRL في دنقلا يعمل بالشراكة مع وزارة التربية. أكثر من 600 معلّم وميسّر دُرّبوا في الشمالية. 9,700 متعلّم في 184 مركز بتمويل أوروبي[cite: 1].", fitTxt:"أعلى فرصة في مجالك — ادخل كشريك تنفيذ عبر وزارة التربية الولائية وكلاستر التعليم.", em:"ehinds@unicef.org", ph:"+249 (0)156 553 670", web:"https://www.unicef.org/sudan/contact-us", addr:"الخرطوم / مكاتب ميدانية", win:"الشراكة عبر كلاستر التعليم ووزارة التربية.", src:[["يونيسف — مركز التعليم البديل بدنقلا","https://www.unicef.org/sudan/stories/new-teaching-approach-transforms-learning"]]},
+  {cat:"intl", tag:["تمكين المرأة","حماية","صحة"], fit:3, nm:"صندوق الأمم المتحدة للسكان — UNFPA", en:"United Nations Population Fund", sec:"حماية المرأة، صحة إنجابية، مساحات آمنة للنساء والفتيات", pres:"مؤكَّد: مكتب ميداني في دنقلا ووظيفة محلّل أعراف اجتماعية وتعبئة مجتمعية مقرّها دنقلا[cite: 1].", fitTxt:"أقوى باب تشغيلي لتشغيل مساحة آمنة للنساء والفتيات (WGSS) بدعمهم.", em:"sudan@unfpa.org", ph:"+249 183 278792", web:"https://sudan.unfpa.org/en/contact", addr:"مكتب السودان القُطري", win:"نافذة الشراكة مفتوحة على مدار العام عبر المكاتب الميدانية.", src:[["UNFPA — وظيفة بدنقلا","https://www.unfpa.org/jobs/national-post-social-norms-and-community-mobilization-analyst-%E2%80%93-fta-%E2%80%93-nob-%E2%80%93-dongola-sudan"]]},
+  {cat:"intl", tag:["تمكين المرأة","حماية"], fit:3, nm:"هيئة الأمم المتحدة للمرأة — UN Women", en:"UN Women Sudan", sec:"التمكين الاقتصادي للمرأة، العنف القائم على النوع", pres:"مؤكَّد: شريكتها المحلية الرحمة (RODHA) نفّذت مشروعاً بدنقلا بـ120,000 دولار[cite: 1].", fitTxt:"الباب الأنسب لبرنامج التمكين الاقتصادي — النموذج قائم وقابل للتكرار.", em:"غير متاح – يُتحقق", ph:"+254 20 762 26409", web:"https://africa.unwomen.org", addr:"المكتب الإقليمي لأفريقيا", win:"التعاقد المباشر مع الشركاء المنفّذين.", src:[["UN Women — مشروع دنقلا","https://www.unwomen.org/en/news-stories/feature-story/2026/09/how-sudanese-women-uplift-one-another-and-their-communities-amid-war"]]},
+  {cat:"intl", tag:["صحة","تنسيق"], fit:2, nm:"منظمة الصحة العالمية — WHO", en:"World Health Organization Sudan", sec:"الصحة، دعم المستشفيات، البنية التحتية الصحية", pres:"مؤكَّد: مناقصة WHO لصيانة وتركيب أنظمة طاقة شمسية في مستشفى دنقلا التخصصي[cite: 1].", fitTxt:"التعاقد على مستوى المستشفى يفتح باباً لخدمات داعمة (تغذية، صحة مدرسية).", em:"غير متاح", ph:"غير متاح", web:"https://www.emro.who.int/countries/sdn/", addr:"مكتب ممثّل WHO", win:"التسجيل عبر UNGM.", src:[["مناقصة WHO — مستشفى دنقلا","https://www.developmentaid.org/tenders/view/1712972/maintenance-and-installation-of-solar-power-systems-at-dongola-specialized-hospital-northern-state"]]},
+  {cat:"intl", tag:["تعليم","تمكين المرأة"], fit:2, nm:"المجلس النرويجي للاجئين — NRC", en:"Norwegian Refugee Council", sec:"تعليم في الطوارئ، استجابة تعليمية أولى", pres:"غير مؤكَّد في الشمالية تحديداً، رغم عمله الواسع في السودان[cite: 1].", fitTxt:"القطاع مطابق تماماً، لكن يجب التحقق من تغطيتهم الجغرافية لدنقلا.", em:"SD.info@nrc.no", ph:"غير متاح", web:"https://www.nrc.no", addr:"مكتب السودان القُطري", win:"شراكات مع منظمات وطنية.", src:[["NRC السودان","https://www.nrc.no/countries/africa/sudan"]]},
+  {cat:"intl", tag:["تعليم","حماية"], fit:2, nm:"سيف ذا تشيلدرن — Save the Children", en:"Save the Children", sec:"تعليم، حماية الطفل، سبل العيش", pres:"غير مؤكَّد في الشمالية؛ المكتب القُطري في بورتسودان[cite: 1].", fitTxt:"تحقق مباشر مطلوب قبل بدء أي جهد عملي.", em:"غير متاح", ph:"+249 9 156553660", web:"https://www.savethechildren.net", addr:"بورتسودان", win:"الشراكات عبر بورتسودان.", src:[["Save the Children السودان","https://www.savethechildren.net/sudan"]]},
+  {cat:"intl", tag:["تعليم","صحة"], fit:3, nm:"الجمعية الطبية السودانية الأمريكية — SAMA", en:"SAMA", sec:"رعاية طبية عاجلة وأولية، دعم النازحين", pres:"مؤكَّد: تدخل إنساني في دنقلا رعاية لأكثر من 2,500 نازح[cite: 1].", fitTxt:"عالية كشريك تنفيذي ميداني على الأرض.", em:"غير متاح", ph:"غير متاح", web:"https://sama-sd.org", addr:"دنقلا (برنامج)", win:"شراكة تنفيذ محلية.", src:[["SAMA — برامج دنقلا","https://sama-sd.org/humanitarian-crisis/dongola-programs/primary-urgent-care/"]]},
+  {cat:"intl", tag:["صحة"], fit:2, nm:"الهلال الأحمر القطري — QRCS", en:"Qatar Red Crescent", sec:"عيادات متنقلة، صحة أولية", pres:"مؤكَّد: عيادة متنقلة في معسكر عطّات بالدبة واجتماعات مع وزارة الصحة بدنقلا[cite: 1].", fitTxt:"يمكن الدخول كشريك تنفيذ لأنشطة مصاحبة (توعية، دعم نفسي، أنشطة نساء).", em:"غير متاح", ph:"غير متاح", web:"https://reliefweb.int", addr:"مكتب السودان", win:"العمل عبر شركاء محليين ودوليين.", src:[["QRCS — الشمالية","https://reliefweb.int/report/sudan/qrcs-deploys-mobile-clinic-serve-al-fasher-idps-northern-state-sudan"]]},
+
+  // وطنية
+  {cat:"nat", tag:["تعليم"], fit:3, nm:"منظمة صدقات — Sadagaat", en:"Sadagaat Charity", sec:"تعليم، قرطاسية، مساحات تعلّم آمنة", pres:"مؤكَّد: وزّعت حقائب وقرطاسية بدعم يونيسف ونفّذت برنامجاً لمساحات التعلّم بدنقلا[cite: 1].", fitTxt:"أعلى أولوية — منظمة سودانية سبقتك في نفس المجال والجغرافيا مع يونيسف وSHF.", em:"sadagaat@sadagaat.com", ph:"+249 91 239 6372", web:"https://sadagaat.com", addr:"السودان", win:"—", src:[["صدقات + يونيسف","https://sadagaat.com/sadagaat-implements-school-supplies-distribution-project-with-support-from-unicef-in-northern-state/"]]},
+  {cat:"nat", tag:["تمكين المرأة","حماية"], fit:3, nm:"الرحمة للتنمية والعون — RODHA", en:"El Ruhama Organization", sec:"التمكين الاقتصادي للمرأة، العنف القائم على النوع، حقائب الكرامة", pres:"مؤكَّد بأرقام: مشروع بدنقلا بقرية الدايم بـ120,000 دولار من UN Women (357 امرأة دُرّبن على دخل، 198 حقيبة كرامة)[cite: 1].", fitTxt:"المرجع الحرفي لمشروعك — أثبتت القدرة على إدارة منح UN Women بدنقلا.", em:"elruhamaaid@gmail.com", ph:"غير متاح", web:"https://elruhamaaid.org", addr:"دنقلا — قرية الدايم", win:"—", src:[["RODHA — نموذج معالجة النوع","https://elruhamaaid.org/a-sustainable-model-for-addressing-gender/"]]},
+  {cat:"nat", tag:["تمكين المرأة"], fit:3, nm:"درة النيل للتنمية — Durrat El-Nil", en:"Durrat Elnile Organization", sec:"التمكين الاقتصادي للنساء والتنمية المجتمعية", pres:"مقرها دنقلا ونفذت مشاريع بالتعاون مع الشؤون الاجتماعية بالولاية الشمالية[cite: 1].", fitTxt:"علاقة مؤسسية قوية بالأمانة العامة للشؤون الاجتماعية (شريكك الحكومي).", em:"info@durratelnile.org", ph:"يُتحقق", web:"https://www.durratelnile.org", addr:"دنقلا — الولاية الشمالية", win:"—", src:[["درة النيل — تواصل","https://www.durratelnile.org/news.php?lang=en"]]},
+  {cat:"nat", tag:["تعليم","تمكين المرأة","حماية"], fit:3, nm:"منظمة سيلا لتنمية المجتمع — SAILA", en:"Saila Organization", sec:"التعليم والتنمية، التمكين الاقتصادي للنساء", pres:"مقرها الرئيسي في دنقلا، الولاية الشمالية — ملف مطابق لمجالك[cite: 1].", fitTxt:"أقرب قرينة لك في المقر والمجال للتعاون وتبادل القدرات.", em:"info@saila-sd.org", ph:"+249 914320309", web:"https://saila-sd.org", addr:"دنقلا", win:"—", src:[["SAILA — البرامج","https://saila-sd.org/our-programs/"]]},
+
+  // شريك محتمل
+  {cat:"part", tag:["تعليم","تمكين المرأة"], fit:3, nm:"ولاية الشمالية — وزارة التربية والتعليم", en:"Ministry of Education", sec:"شريك حكومي إلزامي", pres:"مركز التعليم البديل بدنقلا يعمل بالشراكة مع وزارة التربية[cite: 1].", fitTxt:"من غير خطاب منهم لن يُفتح لك باب يونيسف أو كلاستر التعليم.", em:"غير متاح", ph:"غير متاح", web:"https://www.educationcluster.net", addr:"دنقلا", win:"—", src:[["يونيسف — التعليم البديل بدنقلا","https://www.unicef.org/sudan/stories/new-teaching-approach-transforms-learning"]]},
+  {cat:"part", tag:["تنسيق"], fit:3, nm:"مفوضية العون الإنساني (HAC) — فرع الشمالية", en:"HAC Northern State", sec:"جهة التسجيل والتصديق الرسمي", pres:"مقرها دنقلا — غرب مسجد التقوى، شارع الدرجة الثالثة[cite: 1].", fitTxt:"إلزامي — التسجيل صالح 12 شهراً فقط ويُجدَّد سنوياً.", em:"غير متاح", ph:"0123251420", web:"https://www.hac.gov.sd", addr:"دنقلا", win:"—", src:[["الدليل العام للإجراءات","https://www.hac.gov.sd/ar/GeneralManual"]]},
+  {cat:"part", tag:["تنسيق"], fit:2, nm:"كلاستر التعليم السودان", en:"Education Cluster", sec:"تنسيق وتحويل الاحتياج إلى تمويل", pres:"مجموعة عمل قُطرية لتنسيق الاستجابة التعليمية وصندوق السودان الإنساني[cite: 1].", fitTxt:"العضوية مجانية وتفتح لك الاجتماعات الولائية ومعلومات الفجوات.", em:"غير متاح", ph:"غير متاح", web:"https://www.educationcluster.net", addr:"قُطري", win:"—", src:[["Education Cluster","https://www.educationcluster.net/country/sudan"]]},
+
+  // مانحون
+  {cat:"don", tag:["تنسيق"], fit:3, nm:"صندوق السودان الإنساني — SHF / OCHA", en:"Sudan Humanitarian Fund", sec:"صندوق مجمّع متعدد المانحين", pres:"يعطي أولوية للمنظمات الوطنية والمحلية كمتلقّين أساسيين[cite: 1].", fitTxt:"أكبر باب تمويل في مجالك، يحتاج تسجيل ساري وحوكمة ومحاسبة.", em:"OCHASudan@un.org", ph:"غير متاح", web:"https://www.unocha.org", addr:"عبر OCHA", win:"تخصيصات دورية", src:[["استراتيجية التخصيص 2026","https://reliefweb.int/report/sudan/sudan-humanitarian-fund-shf-2026-first-standard-allocation-strategy"]]},
+  {cat:"don", tag:["تمكين المرأة","حماية"], fit:3, nm:"صندوق المرأة للسلام والعمل الإنساني — WPHF", en:"WPHF", sec:"تمويل مؤسسي وبرمجي للمنظمات النسائية المحلية", pres:"يستهدف دعم المنظمات النسائية والنساء النازحات قسراً[cite: 1].", fitTxt:"الأنسب للناشئة: التمويل المؤسسي مصمَّم لتقوية المنظمة نفسها.", em:"Sanaa.Saeed@undp.org", ph:"غير متاح", web:"https://wphfund.org", addr:"أونلاين", win:"دورات متكررة", src:[["WPHF — دعوة السودان","https://wphfund.org/call-for-proposals-in-sudan-5/"]]},
+  {cat:"don", tag:["تعليم","تمكين المرأة"], fit:3, nm:"سفارة اليابان — منح المشاريع الأساسية GGP", en:"Embassy of Japan GGP", sec:"منح صغيرة لمشاريع مجتمعية (تعليم، صحة، تمكين)", pres:"تدعم مشاريع صغيرة يستفيد منها المجتمعات مباشرة عبر منظمات وطنية[cite: 1].", fitTxt:"منح صغيرة رسمية تقبل منظمات وطنية ولا تتطلب حجماً مؤسسياً ضخماً.", em:"غير متاح", ph:"غير متاح", web:"https://www.sdn.emb-japan.go.jp", addr:"سفارة اليابان", win:"دورة سنوية", src:[["GGP اليابان","https://www.sdn.emb-japan.go.jp/itpr_en/ggp.html"]]},
+
+  // أحداث دنقلا
+  {cat:"events", tag:["تعليم","نشاط ميداني"], fit:3, nm:"ورشة التدريب المهني والتعليم البديل", en:"Dongola Local Event", sec:"نشاط مجتمعي في دنقلا", pres:"مؤكَّد: تنفيذ ورشة تدريبية لـ 45 امرأة في مجالات الإنتاج ودعم تعليم الأطفال بمراكز الإيواء.", fitTxt:"فعالية ميدانية ناجحة.", em:"info@dongola.org", ph:"+249 910000000", web:"#", addr:"دنقلا", win:"جارية", src:[["إدارة المنصة","#"]]}
+];
+
+// استرجاع البيانات أو تعبئتها
+let D = JSON.parse(localStorage.getItem('dongola_full_data')) || defaultData;
+let volCount = localStorage.getItem('dongola_volunteers') || 125;
+let cur="all", tagf="all", q="";
+
+const grid=document.getElementById("grid"), note=document.getElementById("catnote");
+const fitHtml=f=>{const c=f===3?"f3":f===2?"f2":"f1";const s=f===3?"●●● عالية":f===2?"●●○ متوسطة":"●○○ منخفضة";return `<span class="fits ${c}">${s}</span>`};
+
+function saveData(){
+  localStorage.setItem('dongola_full_data', JSON.stringify(D));
+  localStorage.setItem('dongola_volunteers', volCount);
+  render();
+}
+
+function updateCounts(){
+  document.getElementById('vol-count').innerText = volCount;
+  document.getElementById('total-items').innerText = D.length;
+  document.getElementById('c-all').innerText = D.length;
+  ['intl','nat','part','don','events'].forEach(c => {
+    const el = document.getElementById(`c-${c}`);
+    if(el) el.innerText = D.filter(x => x.cat === c).length;
+  });
+}
+
+function render(){
+  updateCounts();
+  const list = D.filter(d => {
+    const catOk = cur==="all" || d.cat===cur;
+    const tagOk = tagf==="all" || (d.tag && d.tag.includes(tagf));
+    const qOk = !q || (d.nm+d.en+d.sec+d.pres+(d.fitTxt||'')).toLowerCase().includes(q.toLowerCase());
+    return catOk && tagOk && qOk;
+  });
+  
+  const badge={intl:["b-intl","دولية"],nat:["b-nat","وطنية"],part:["b-part","شريك محتمل"],don:["b-don","مانح"],events:["b-event","حدث في دنقلا"]};
+
+  grid.innerHTML = list.length ? list.map((d) => {
+    const originalIndex = D.indexOf(d);
+    const b = badge[d.cat] || ["b-event","عنصر"];
+    return `<div class="card">
+      <div class="ch">
+        <div><div class="nm">${d.nm}</div><div class="en">${d.en||''}</div></div>
+        <span class="badge ${b[0]}">${b[1]}</span>
+      </div>
+      <div class="tags">${(d.tag||[]).map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+      <div class="row"><span class="k">التفاصيل</span><span class="v">${d.sec||''}</span></div>
+      <div class="row"><span class="k">التواجد</span><span class="v">${d.pres||''}</span></div>
+      <div class="row"><span class="k">التواصل</span><span class="v">${d.em||''}<br>${d.ph||''}<br>${d.addr||''}</span></div>
+      <div class="row"><span class="k">الشراكة</span><span class="v">${fitHtml(Number(d.fit))}<br>${d.fitTxt||''}</span></div>
+      
+      <div class="card-actions">
+        <button class="btn-action btn-edit" style="font-size:0.75rem; padding:4px 10px;" onclick="editCard(${originalIndex})">✏️ تعديل</button>
+        <button class="btn-action btn-danger" style="font-size:0.75rem; padding:4px 10px;" onclick="deleteCard(${originalIndex})">🗑️ حذف</button>
+      </div>
+    </div>`;
+  }).join("") : `<div class="note">لا توجد عناصر مطابقة لبحثك.</div>`;
+}
+
+window.deleteCard = function(idx){
+  if(confirm(`هل أنت تأكد من حذف "${D[idx].nm}"؟`)){
+    D.splice(idx, 1);
+    saveData();
+  }
+};
+
+window.editCard = function(idx){
+  const item = D[idx];
+  document.getElementById('modalTitle').innerText = "تعديل بيانات العنصر";
+  document.getElementById('editIndex').value = idx;
+  document.getElementById('fCat').value = item.cat || 'intl';
+  document.getElementById('fNm').value = item.nm || '';
+  document.getElementById('fEn').value = item.en || '';
+  document.getElementById('fTag').value = (item.tag || []).join(', ');
+  document.getElementById('fSec').value = item.sec || '';
+  document.getElementById('fPres').value = item.pres || '';
+  document.getElementById('fEm').value = item.em || '';
+  document.getElementById('fPh').value = item.ph || '';
+  document.getElementById('fAddr').value = item.addr || '';
+  document.getElementById('fFit').value = item.fit || 3;
+  document.getElementById('fFitTxt').value = item.fitTxt || '';
+  
+  document.getElementById('modal').style.display = 'flex';
+};
+
+document.getElementById('openAddModal').onclick = () => {
+  document.getElementById('modalTitle').innerText = "إضافة جهة أو حدث جديد إلى دنقلا";
+  document.getElementById('dataForm').reset();
+  document.getElementById('editIndex').value = "-1";
+  document.getElementById('modal').style.display = 'flex';
+};
+
+document.getElementById('closeModal').onclick = () => {
+  document.getElementById('modal').style.display = 'none';
+};
+
+document.getElementById('dataForm').onsubmit = (e) => {
+  e.preventDefault();
+  const idx = parseInt(document.getElementById('editIndex').value);
+  const newItem = {
+    cat: document.getElementById('fCat').value,
+    nm: document.getElementById('fNm').value,
+    en: document.getElementById('fEn').value,
+    tag: document.getElementById('fTag').value.split(',').map(t=>t.trim()).filter(Boolean),
+    sec: document.getElementById('fSec').value,
+    pres: document.getElementById('fPres').value,
+    em: document.getElementById('fEm').value,
+    ph: document.getElementById('fPh').value,
+    addr: document.getElementById('fAddr').value,
+    fit: parseInt(document.getElementById('fFit').value),
+    fitTxt: document.getElementById('fFitTxt').value,
+    src: [["إدخال محلي عبر المنصة","#"]]
+  };
+
+  if(idx >= 0){
+    D[idx] = newItem;
+  } else {
+    D.unshift(newItem);
+  }
+
+  saveData();
+  document.getElementById('modal').style.display = 'none';
+};
+
+document.getElementById('updateVolBtn').onclick = () => {
+  const val = prompt("أدخل عدد المتطوعين الجديد في دنقلا:", volCount);
+  if(val !== null && !isNaN(val) && val.trim() !== ""){
+    volCount = parseInt(val);
+    saveData();
+  }
+};
+
+document.getElementById('resetDataBtn').onclick = () => {
+  if(confirm("هل تريد إعادة المنصة إلى بياناتها الأصلية؟")){
+    D = [...defaultData];
+    volCount = 125;
+    saveData();
+  }
+};
+
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active"); cur=b.dataset.cat; render();
+});
+
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
+  c.classList.add("on"); tagf=c.dataset.tag; render();
+});
+
+document.getElementById("q").oninput=e=>{q=e.target.value; render();};
+
+render();
+</script>
+</body>
+</html>
